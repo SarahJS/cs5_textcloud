@@ -58,26 +58,23 @@ def removeRepeats(L):
                 last = L[i]
 
 def wordFrequencies(url):
-    """ wordFrequencies creates a list of frequently occurring words on some webpage.
-    """
+    """ wordFrequencies creates a list of frequently occurring words on some 
+    webpage. """
     L = createList(url)
     L2 = clean(L)
     L3 = stem(L2)
     count(L3)
     
 def createList(url):
-    """ createList returns a list of all of the words on a given webpage.
-    """
+    """ createList returns a list of all of the words on a given webpage."""
     return str.split(getHTML(url)[0])
 
 def removeAll(L, x):
-    """ removeAll removes all undesired words from a list of words.
-    """
+    """ removeAll removes all undesired words from a list of words."""
     return [word for word in L if word != x]
 
 def clean(L):
-    """ clean removes unimportant words and punctuation from a list of words.
-    """
+    """ clean removes unimportant words and punctuation from a list of words."""
     S = ['the', 'of', 'to', 'and', 'a', 'in', 'is', 'it', 'you', 'that', 'he', 'was', 'for', 'on', 'are', 'with', 'as', 'i', 'his', 'they', 'be', 'at', 'one', 'have', 'this', 'from', 'or', 'had', 'by', 'but', 'some', 'what', 'there', 'we', 'can', 'out', 'other', 'were', 'all', 'your', 'when', 'up', 'an']
     L2 = []
     for x in L:
@@ -90,8 +87,8 @@ def clean(L):
     return L2
 
 def stem(L):
-    """ stem removes suffixes from words and returns just the stems of the words.
-    """
+    """ stem removes suffixes from words and returns just the stems of the 
+    words."""
     L2 = []
     for w in L:
         E = ['number', 'sly', 'ply', 'fly', 'wily', 'ugly', 'rely', 'lily', 'july', 'holy', 'ally', 'jelly', 'jolly', 'zed', 'wed', 'ted', 'red', 'ned', 'led', 'fed', 'bed', 'vied', 'sped', 'sled', 'shed', 'fred', 'fled', 'coed', 'bred', 'bled', 'unwed', 'embed', 'per', 'her', 'veer', 'tier', 'pier', 'peer', 'over', 'leer', 'jeer', 'ever', 'deer', 'beer', 'water','wafer', 'viper', 'utter', 'usher', 'under', 'ulcer', 'udder', 'tower', 'tiger', 'tater', 'taper', 'super', 'steer', 'sober', 'sneer', 'sheer', 'sever', 'ruler', 'peter', 'roger', 'otter', 'other', 'order', 'offer', 'niger', 'miser', 'meter', 'liver', 'liter', 'lever', 'leper', 'layer', 'later','laser', 'lager', 'infer', 'hover', 'fiber', 'ember', 'enter', 'ether', 'elder', 'eager', 'cower', 'cover', 'cider', 'cheer', 'ceder', 'cater', 'caper', 'brier', 'anger', 'after', 'yonder', 'wonder', 'supper', 'summer', 'somber', 'solder', 'soccer', 'sliver', 'sister', 'silver', 'shower', 'roster', 'proer', 'prefer', 'prayer', 'powder', 'poster', 'pewter', 'pepper', 'pander', 'pamper', 'oyster', 'oliver', 'nether', 'mutter', 'muster', 'murder', 'mother', 'mister', 'member', 'meager', 'matter', 'manger', 'master', 'lumber', 'loiter', 'litter', 'limber', 'lawyer', 'latter', 'lather', 'ladder', 'kosher', 'jitter', 'jigger', 'jasper', 'isomer', 'heifer', 'hammer', 'ginger', 'foster', 'former', 'folder', 'fodder', 'flower', 'filter', 'drawer', 'diaper', 'dexter', 'denver', 'danger', 'damper', 'dagger', 'cypher', 'crater', 'corner', 'copper', 'clover', 'butter', 'butler', 'burger', 'bummer', 'buffer', 'broker', 'booger', 'bitter', 'blazer', 'better', 'beaver', 'batter', 'barter', 'barber', 'banter', 'banner', 'badger', 'antler', 'answer', 'whoever', 'whisper', 'weather', 'uncover', 'twitter', 'trigger', 'tamper', 'trailer', 'toddler', 'thunder', 'theater', 'terrier', 'swelter', 'sweater', 'sticker', 'sputter', 'snicker', 'sneaker', 'smother', 'smolder', 'slumber', 'slobber', 'slither', 'slender', 'slather', 'slander', 'shudder', 'shelter', 'shatter', 'seltzer', 'scamper', 'saunter', 'rooster', 'reorder', 'reenter', 'recover' ,'quarter', 'prosper', 'premier', 'plunder', 'pitcher', 'pioneer', 'neither', 'meander' ,'lobster', 'leather', 'lacquer', 'jupiter', 'juniper', 'integer', 'however', 'holster', 'hipster', 'heather', 'hamster', 'glitter', 'glimmer', 'glacier', 'power', 'empower', 'feather', 'farther', 'critter', 'courier', 'coaster', 'clutter', 'clatter', 'chipper', 'checker', 'chashier', 'butcher', 'boulder', 'blooper', 'bolster', 'blister', 'another', 'holler', 'painkiller', 'stroller', 'barrier', 'administer', 'cluster', 'headmaster', 'wistful', 'awful', 'witness', 'lioness', 'highness', 'fitness', 'less', 'bless', 'unless', 'nonetheless', 'prism', 'deism', 'theism', 'schism', 'sadism', 'autism', 'baptism', 'optimism', 'nihlism', 'atheism', 'altruism', 'exorcism', 'hypnotism', 'communism', 'embolism', 'vies', 'ties', 'pies', 'lies', 'dies', 'rabies', 'scabies', 'rookies', 'potpies', 'barbies', 'belies', 'bookies', 'brownies', 'collies', 'cooties', 'hippies', 'magpies', 'meanies', 'newbies', 'movies', 'pixies', 'panties', 'smoothies', 'sweeties', 'townies', 'zombies', 'sing', 'ring', 'ding', 'king', 'zing', 'bring', 'wing', 'viking', 'icing', 'thing', 'sling', 'wring', 'cling', 'string', 'during', 'affable', 'abominable', 'capable', 'able', 'cable', 'viable', 'stable', 'constable', 'culpable', 'liable', 'delect', 'malleable', 'despicable', 'disable', 'mutable', 'satiable', 'table', 'incapable', 'unable', 'probable', 'amicable', 'arguable', 'vulnerable', 'amiable', 'vegetable', 'venerable', 'unusable']
@@ -150,8 +147,8 @@ def stem(L):
     return L2
 
 def count(L, m):
-    """ count gives the frequency of words on a given webpage in decending order.
-    """
+    """ count gives the frequency of words on a given webpage in decending 
+    order."""
     freq_dic = {}
     for word in L:
         try:
